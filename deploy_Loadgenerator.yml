@@ -4,18 +4,27 @@
           OSArchitecture: x86_64
 
   tasks:
-   - name: unzip LG archive
-     unarchive:
-       # test
-       # src: /Users/pe/Installer/MF-dummy.zip
-        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
-        dest: /tmp
 
-      # MF Loadrunner Installer run: installer.sh -i silent
+#    - name: unzip LG archive
+#      unarchive:
+#        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
+#        dest: /tmp
+
+    # MF Loadrunner Installer run: installer.sh -i silent
     - name: Install LG
-      # test
-      # shell: /tmp/MF/Installer.sh >> /tmp/installer.log
       shell: chdir=/tmp/MF_LG_1260_Linux_64bit/lg_linux_x64/ ./installer.sh -i silent >> /tmp/LGInstaller.log
       become: yes
       args:
-      #creates: /tmp/LGInstaller.log
+
+# PostInstall
+# .cd /opt/MF/MF_LoadGenerator/;source env.sh;cd bin;./m_daemon_setup -install
+
+    - name: environment
+      shell: chdir=/opt/MF/MF_LoadGenerator/ ./env
+      become: yes
+      args:
+
+    - name: m_daemon_setup install
+      shell: chdir=/opt/MF/MF_LoadGenerator/bin  ./m_daemon_setup -install
+      become: yes
+      args:
