@@ -4,21 +4,18 @@
           OSArchitecture: x86_64
 
   tasks:
-#   - name: unzip LG archive
-#     unarchive:
-#       # test
-#       # src: /Users/pe/Installer/MF-dummy.zip
-#        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
-#        dest: /tmp
+   - name: unzip LG archive
+     unarchive:
+       # test
+       # src: /Users/pe/Installer/MF-dummy.zip
+        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
+        dest: /tmp
 
       # MF Loadrunner Installer run: installer.sh -i silent
     - name: Install LG
       # test
       # shell: /tmp/MF/Installer.sh >> /tmp/installer.log
-      #shell: /tmp/MF_LG_1260_Linux_64bit/lg_linux_x64/installer.sh -i silent >> /tmp/LGInstaller.log
       shell: chdir=/tmp/MF_LG_1260_Linux_64bit/lg_linux_x64/ ./installer.sh -i silent >> /tmp/LGInstaller.log
-      #script: chdir=/tmp/MF_LG_1260_Linux_64bit/lg_linux_x64/ installer.sh -i silent >> /tmp/LGInstaller.log
-      #command:  bash -lc "cd tmp/MF_LG_1260_Linux_64bit/lg_linux_x64/ && installer.sh -i silent >> /tmp/LGInstaller.log"
       become: yes
       args:
       #creates: /tmp/LGInstaller.log
