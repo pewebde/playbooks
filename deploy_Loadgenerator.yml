@@ -5,10 +5,10 @@
 
   tasks:
 
-#    - name: unzip LG archive
-#      unarchive:
-#        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
-#        dest: /tmp
+    - name: unzip LG archive
+      unarchive:
+        src: /Users/pe/Installer/MF_LG_1260_Linux_64bit.tar
+        dest: /tmp
 
     # MF Loadrunner Installer run: installer.sh -i silent
     - name: Install LG
@@ -20,7 +20,7 @@
 # .cd /opt/MF/MF_LoadGenerator/;source env.sh;cd bin;./m_daemon_setup -install
 
     - name: environment
-      shell: chdir=/opt/MF/MF_LoadGenerator/ ./env
+      shell: chdir=/opt/MF/MF_LoadGenerator/ ./env.sh
       become: yes
       args:
 
